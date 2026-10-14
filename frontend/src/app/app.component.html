@@ -1,0 +1,62 @@
+<main class="container">
+  <header>
+    <h1>Gerenciador de Tarefas</h1>
+    <!-- {{ }} = interpolação: mostra o valor de uma variável da classe -->
+    <p class="resumo">{{ pendentes }} pendente(s) de {{ tarefas.length }}</p>
+  </header>
+
+  <!-- (ngSubmit) = evento: chama o método salvar() ao enviar o formulário -->
+  <form class="formulario" (ngSubmit)="salvar()">
+    <h2>{{ emEdicao ? 'Editar tarefa' : 'Nova tarefa' }}</h2>
+
+    <!-- [(ngModel)] = two-way binding: o campo e a variável ficam sincronizados -->
+    <input
+      type="text"
+      name="titulo"
+      placeholder="Título"
+      maxlength="100"
+      [(ngModel)]="titulo"
+    />
+    <textarea
+      name="descricao"
+      placeholder="Descrição (opcional)"
+      rows="2"
+      maxlength="500"
+      [(ngModel)]="descricao"
+    ></textarea>
+
+    <div class="acoes-form">
+      <button type="submit" class="primario">{{ emEdicao ? 'Salvar alterações' : 'Adicionar' }}</button>
+      <!-- *ngIf: só mostra o botão quando está editando -->
+      <button *ngIf="emEdicao" type="button" (click)="cancelarEdicao()">Cancelar</button>
+    </div>
+
+    <p *ngIf="erro" class="erro">{{ erro }}</p>
+  </form>
+
+  <p *ngIf="carregando" class="info">Carregando...</p>
+  <p *ngIf="!carregando && tarefas.length === 0 && !erro" class="info">Nenhuma tarefa cadastrada.</p>
+
+  <ul class="lista">
+    <!-- *ngFor: repete o <li> para cada tarefa da lista -->
+    <!-- [class.concluida]: property binding que liga/desliga uma classe CSS -->
+    <li *ngFor="let tarefa of tarefas" [class.concluida]="tarefa.concluida">
+      <input
+        type="checkbox"
+        [checked]="tarefa.concluida"
+        (change)="alternarConclusao(tarefa)"
+        [attr.aria-label]="'Concluir ' + tarefa.titulo"
+      />
+      <div class="texto">
+        <strong>{{ tarefa.titulo }}</strong>
+        <span *ngIf="tarefa.descricao">{{ tarefa.descricao }}</span>
+        <!-- | date = pipe: formata o valor na tela -->
+        <small>Criada em {{ tarefa.criadaEm | date: 'dd/MM/yyyy HH:mm' }}</small>
+      </div>
+      <div class="acoes">
+        <button type="button" (click)="editar(tarefa)">Editar</button>
+        <button type="button" class="perigo" (click)="excluir(tarefa)">Excluir</button>
+      </div>
+    </li>
+  </ul>
+</main>

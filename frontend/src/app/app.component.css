@@ -1,0 +1,130 @@
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #1f2937;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.resumo {
+  margin: 4px 0 24px;
+  color: #6b7280;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+  margin-bottom: 24px;
+}
+
+.formulario h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+input[type='text'],
+textarea {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.acoes-form {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+button.primario {
+  background: #512bd4; /* roxo do .NET */
+  border-color: #512bd4;
+  color: #fff;
+}
+
+button.perigo {
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+.erro {
+  margin: 0;
+  color: #b91c1c;
+}
+
+.info {
+  color: #6b7280;
+}
+
+.lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lista li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.lista input[type='checkbox'] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+}
+
+.texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.texto small {
+  color: #9ca3af;
+}
+
+.lista li.concluida strong {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.acoes {
+  display: flex;
+  gap: 6px;
+}
+
+@media (max-width: 520px) {
+  .lista li {
+    flex-wrap: wrap;
+  }
+  .acoes {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
